@@ -3,10 +3,10 @@
     {
       "identity" : "combine-schedulers",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/pointfreeco/combine-schedulers",
+      "location" : "git@github.com:matheus-air/combine-schedulers",
       "state" : {
-        "revision" : "ec62f32d21584214a4b27c8cee2b2ad70ab2c38a",
-        "version" : "0.11.0"
+        "branch" : "ios-11-compatibility",
+        "revision" : "8a48a1d2f1c796cf7e825a7594f47c9c319e074c"
       }
     },
     {
@@ -30,10 +30,10 @@
     {
       "identity" : "swift-case-paths",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/pointfreeco/swift-case-paths",
+      "location" : "git@github.com:matheus-air/swift-case-paths",
       "state" : {
-        "revision" : "fc45e7b2cfece9dd80b5a45e6469ffe67fe67984",
-        "version" : "0.14.1"
+        "branch" : "ios-11-compatibility",
+        "revision" : "c7a643af85b27a07721899286ab8a66cb09ea2aa"
       }
     },
     {
@@ -57,28 +57,28 @@
     {
       "identity" : "swift-concurrency-extras",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/pointfreeco/swift-concurrency-extras",
+      "location" : "https://github.com/matheus-air/swift-concurrency-extras",
       "state" : {
-        "revision" : "479750bd98fac2e813fffcf2af0728b5b0085795",
-        "version" : "0.1.1"
+        "branch" : "ios-11-compatibility",
+        "revision" : "6a581b82cfa81af3a937e2c78b3bc40d62d9f120"
       }
     },
     {
       "identity" : "swift-custom-dump",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/pointfreeco/swift-custom-dump",
+      "location" : "git@github.com:matheus-air/swift-custom-dump",
       "state" : {
-        "revision" : "4a87bb75be70c983a9548597e8783236feb3401e",
-        "version" : "0.11.1"
+        "branch" : "ios-11-compatibility",
+        "revision" : "2c5a992ccf6523c8cfedce686c86e8a884f8d8ff"
       }
     },
     {
       "identity" : "swift-dependencies",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/pointfreeco/swift-dependencies",
+      "location" : "git@github.com:matheus-air/swift-dependencies",
       "state" : {
-        "revision" : "16fd42ae04c6e7f74a6a86395d04722c641cccee",
-        "version" : "0.6.0"
+        "branch" : "ios-11-compatibility",
+        "revision" : "e2a5dfc25936420b1fcce5e6e48ba2b1f68d00e9"
       }
     },
     {
@@ -111,19 +111,19 @@
     {
       "identity" : "swiftui-navigation",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/pointfreeco/swiftui-navigation",
+      "location" : "git@github.com:matheus-air/swiftui-navigation",
       "state" : {
-        "revision" : "2aa885e719087ee19df251c08a5980ad3e787f12",
-        "version" : "0.8.0"
+        "branch" : "ios-11-compatibility",
+        "revision" : "c0a3c4fec9973b12c8cf46ec3bc213e315118079"
       }
     },
     {
       "identity" : "xctest-dynamic-overlay",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/pointfreeco/xctest-dynamic-overlay",
+      "location" : "git@github.com:matheus-air/xctest-dynamic-overlay",
       "state" : {
-        "revision" : "4af50b38daf0037cfbab15514a241224c3f62f98",
-        "version" : "0.8.5"
+        "branch" : "ios-11-compatibility",
+        "revision" : "623a0f8757c530d495558e4f1eddef17cf93f6e8"
       }
     }
   ],
