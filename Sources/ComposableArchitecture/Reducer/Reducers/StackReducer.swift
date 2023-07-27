@@ -13,6 +13,7 @@ import OrderedCollections
 /// using ``StackState`` for navigation stacks. Also see
 /// <doc:StackBasedNavigation#StackState-vs-NavigationPath> to understand how ``StackState``
 /// compares to SwiftUI's `NavigationPath` type.
+@available(iOS 13.0, *)
 public struct StackState<Element> {
   var _dictionary: OrderedDictionary<StackElementID, Element>
   fileprivate var _mounted: Set<StackElementID> = []
@@ -109,6 +110,7 @@ public struct StackState<Element> {
   }
 }
 
+@available(iOS 13.0, *)
 extension StackState: RandomAccessCollection, RangeReplaceableCollection {
   public var startIndex: Int { self._dictionary.keys.startIndex }
   public var endIndex: Int { self._dictionary.keys.endIndex }
@@ -130,12 +132,14 @@ extension StackState: RandomAccessCollection, RangeReplaceableCollection {
   }
 }
 
+@available(iOS 13.0, *)
 extension StackState: Equatable where Element: Equatable {
   public static func == (lhs: Self, rhs: Self) -> Bool {
     lhs._dictionary == rhs._dictionary
   }
 }
 
+@available(iOS 13.0, *)
 extension StackState: Hashable where Element: Hashable {
   public func hash(into hasher: inout Hasher) {
     hasher.combine(self._dictionary)
@@ -143,8 +147,10 @@ extension StackState: Hashable where Element: Hashable {
 }
 
 // NB: We can remove `@unchecked` when swift-collections 1.1 is released.
+@available(iOS 13.0, *)
 extension StackState: @unchecked Sendable where Element: Sendable {}
 
+@available(iOS 13.0, *)
 extension StackState: Decodable where Element: Decodable {
   public init(from decoder: Decoder) throws {
     let elements = try [Element](from: decoder)
@@ -152,24 +158,28 @@ extension StackState: Decodable where Element: Decodable {
   }
 }
 
+@available(iOS 13.0, *)
 extension StackState: Encodable where Element: Encodable {
   public func encode(to encoder: Encoder) throws {
     try [Element](self).encode(to: encoder)
   }
 }
 
+@available(iOS 13.0, *)
 extension StackState: CustomStringConvertible {
   public var description: String {
     self._dictionary.values.elements.description
   }
 }
 
+@available(iOS 13.0, *)
 extension StackState: CustomDebugStringConvertible {
   public var debugDescription: String {
     "\(Self.self)(\(self._dictionary.description))"
   }
 }
 
+@available(iOS 13.0, *)
 extension StackState: CustomDumpReflectable {
   public var customDumpMirror: Mirror {
     Mirror(self, unlabeledChildren: Array(zip(self.ids, self)), displayStyle: .dictionary)
@@ -200,6 +210,7 @@ extension StackAction: Equatable where State: Equatable, Action: Equatable {}
 extension StackAction: Hashable where State: Hashable, Action: Hashable {}
 extension StackAction: Sendable where State: Sendable, Action: Sendable {}
 
+@available(iOS 13.0, *)
 extension ReducerProtocol {
   /// Embeds a child reducer in a parent domain that works on elements of a navigation stack in
   /// parent state.
@@ -280,6 +291,7 @@ extension ReducerProtocol {
   }
 }
 
+@available(iOS 13.0, *)
 public struct _StackReducer<
   Base: ReducerProtocol, Destination: ReducerProtocol
 >: ReducerProtocol {

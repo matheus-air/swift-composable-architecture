@@ -4,6 +4,7 @@ extension Notification.Name {
   public static let runtimeWarning = Self("ComposableArchitecture.runtimeWarning")
 }
 
+@available(iOS 13.0, *)
 @_transparent
 @usableFromInline
 @inline(__always)

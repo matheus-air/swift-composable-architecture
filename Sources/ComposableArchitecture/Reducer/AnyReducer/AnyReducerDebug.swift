@@ -1,6 +1,7 @@
 import CasePaths
 import Dispatch
 
+@available(iOS 13.0, *)
 extension AnyReducer {
   /// This API has been soft-deprecated in favor of ``ReducerProtocol/debug()``. Read
   /// <doc:MigratingToTheReducerProtocol> for more information.

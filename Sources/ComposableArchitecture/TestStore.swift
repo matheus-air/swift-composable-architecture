@@ -423,6 +423,7 @@ import XCTestDynamicOverlay
 /// [merowing.info]: https://www.merowing.info
 /// [exhaustive-testing-in-tca]: https://www.merowing.info/exhaustive-testing-in-tca/
 /// [Composable-Architecture-at-Scale]: https://vimeo.com/751173570
+@available(iOS 13.0, *)
 public final class TestStore<State, Action, ScopedState, ScopedAction, Environment> {
 
   /// The current dependencies of the test store.
@@ -1001,10 +1002,12 @@ public final class TestStore<State, Action, ScopedState, ScopedAction, Environme
 /// ```swift
 /// let testStore: TestStoreOf<Feature>
 /// ```
+@available(iOS 13.0, *)
 public typealias TestStoreOf<R: ReducerProtocol> = TestStore<
   R.State, R.Action, R.State, R.Action, Void
 >
 
+@available(iOS 13.0, *)
 extension TestStore where ScopedState: Equatable {
   /// Sends an action to the store and asserts when state changes.
   ///
@@ -1443,6 +1446,7 @@ extension TestStore where ScopedState: Equatable {
   }
 }
 
+@available(iOS 13.0, *)
 extension TestStore where ScopedState: Equatable, Action: Equatable {
   /// Asserts an action was received from an effect and asserts when state changes.
   ///
@@ -1602,6 +1606,7 @@ extension TestStore where ScopedState: Equatable, Action: Equatable {
   }
 }
 
+@available(iOS 13.0, *)
 extension TestStore where ScopedState: Equatable {
   /// Asserts a matching action was received from an effect and asserts how the state changes.
   ///
@@ -2062,6 +2067,7 @@ extension TestStore where ScopedState: Equatable {
   }
 }
 
+@available(iOS 13.0, *)
 extension TestStore {
   /// Scopes a store to assert against scoped state and actions.
   ///
@@ -2343,6 +2349,7 @@ extension TestStore {
 /// effects in the test store.
 ///
 /// See ``ViewStoreTask`` for the analog provided to ``ViewStore``.
+@available(iOS 13.0, *)
 public struct TestStoreTask: Hashable, Sendable {
   fileprivate let rawValue: Task<Void, Never>?
   fileprivate let timeout: UInt64
@@ -2447,6 +2454,7 @@ public struct TestStoreTask: Hashable, Sendable {
   }
 }
 
+@available(iOS 13, *)
 class TestReducer<State, Action>: ReducerProtocol {
   let base: Reduce<State, Action>
   var dependencies: DependencyValues
@@ -2614,6 +2622,7 @@ private func _XCTExpectFailure(
   #endif
 }
 
+@available(iOS 13.0, *)
 extension TestStore {
   @MainActor
   @available(

@@ -126,6 +126,7 @@ import SwiftUI
 /// to run only on the main thread, and so a check is executed immediately to make sure that is the
 /// case. Further, all actions sent to the store and all scopes (see ``scope(state:action:)-9iai9``) of
 /// the store are also checked to make sure that work is performed on the main thread.
+@available(iOS 13.0, *)
 public final class Store<State, Action> {
   private var bufferedActions: [Action] = []
   @_spi(Internals) public var effectCancellables: [UUID: AnyCancellable] = [:]
@@ -689,8 +690,10 @@ public final class Store<State, Action> {
 /// ```swift
 /// let store: StoreOf<Feature>
 /// ```
+@available(iOS 13, *)
 public typealias StoreOf<R: ReducerProtocol> = Store<R.State, R.Action>
 
+@available(iOS 13, *)
 extension ReducerProtocol {
   fileprivate func rescope<ChildState, ChildAction>(
     _ store: Store<State, Action>,
@@ -707,6 +710,7 @@ extension ReducerProtocol {
   }
 }
 
+@available(iOS 13.0, *)
 private final class ScopedReducer<
   RootState, RootAction, State, Action
 >: ReducerProtocol {
@@ -757,6 +761,7 @@ private final class ScopedReducer<
   }
 }
 
+@available(iOS 13.0, *)
 protocol AnyScopedReducer {
   func rescope<ScopedState, ScopedAction, RescopedState, RescopedAction>(
     _ store: Store<ScopedState, ScopedAction>,
@@ -766,6 +771,7 @@ protocol AnyScopedReducer {
   ) -> Store<RescopedState, RescopedAction>
 }
 
+@available(iOS 13.0, *)
 extension ScopedReducer: AnyScopedReducer {
   @inlinable
   func rescope<ScopedState, ScopedAction, RescopedState, RescopedAction>(
@@ -814,6 +820,7 @@ extension ScopedReducer: AnyScopedReducer {
 /// > handler between the current async context and the task.
 ///
 /// See ``TestStoreTask`` for the analog returned from ``TestStore``.
+@available(iOS 13.0, *)
 public struct StoreTask: Hashable, Sendable {
   internal let rawValue: Task<Void, Never>?
 

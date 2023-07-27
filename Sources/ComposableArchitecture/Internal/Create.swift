@@ -23,6 +23,7 @@
 import Combine
 import Darwin
 
+@available(iOS 13.0, *)
 final class DemandBuffer<S: Subscriber>: @unchecked Sendable {
   private var buffer = [S.Input]()
   private let subscriber: S
@@ -103,6 +104,7 @@ final class DemandBuffer<S: Subscriber>: @unchecked Sendable {
   }
 }
 
+@available(iOS 13.0, *)
 extension AnyPublisher {
   private init(
     _ callback: @escaping (EffectPublisher<Output, Failure>.Subscriber) -> Cancellable
@@ -117,6 +119,7 @@ extension AnyPublisher {
   }
 }
 
+@available(iOS 13.0, *)
 extension Publishers {
   fileprivate class Create<Output, Failure: Swift.Error>: Publisher {
     private let callback: (EffectPublisher<Output, Failure>.Subscriber) -> Cancellable
@@ -131,6 +134,7 @@ extension Publishers {
   }
 }
 
+@available(iOS 13.0, *)
 extension Publishers.Create {
   fileprivate final class Subscription<Downstream: Subscriber>: Combine.Subscription
   where Downstream.Input == Output, Downstream.Failure == Failure {
@@ -163,12 +167,14 @@ extension Publishers.Create {
   }
 }
 
+@available(iOS 13.0, *)
 extension Publishers.Create.Subscription: CustomStringConvertible {
   var description: String {
     return "Create.Subscription<\(Output.self), \(Failure.self)>"
   }
 }
 
+@available(iOS 13, *)
 extension EffectPublisher {
   public struct Subscriber {
     private let _send: (Action) -> Void

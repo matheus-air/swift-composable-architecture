@@ -1,3 +1,4 @@
+@available(iOS 13.0, *)
 extension ReducerProtocol {
   /// Sets the dependency value of the specified key path to the given value.
   ///
@@ -131,6 +132,7 @@ extension ReducerProtocol {
   }
 }
 
+@available(iOS 13.0, *)
 public struct _DependencyKeyWritingReducer<Base: ReducerProtocol>: ReducerProtocol {
   @usableFromInline
   let base: Base

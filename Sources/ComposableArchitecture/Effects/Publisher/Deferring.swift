@@ -1,5 +1,6 @@
 import Combine
 
+@available(iOS 13.0, *)
 extension EffectPublisher {
   /// Returns an effect that will be executed after given `dueTime`.
   ///

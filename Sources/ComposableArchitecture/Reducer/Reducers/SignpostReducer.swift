@@ -1,5 +1,6 @@
 import OSLog
 
+@available(iOS 13, *)
 extension ReducerProtocol {
   /// Instruments a reducer with
   /// [signposts](https://developer.apple.com/documentation/os/logging/recording_performance_data).
@@ -33,6 +34,7 @@ extension ReducerProtocol {
   }
 }
 
+@available(iOS 13, *)
 public struct _SignpostReducer<Base: ReducerProtocol>: ReducerProtocol {
   @usableFromInline
   let base: Base

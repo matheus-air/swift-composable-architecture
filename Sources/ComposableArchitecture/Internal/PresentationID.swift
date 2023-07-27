@@ -1,11 +1,13 @@
 @_spi(Reflection) import CasePaths
 
+@available(iOS 13.0, *)
 extension PresentationState {
   var id: PresentationID? {
     self.wrappedValue.map(PresentationID.init(base:))
   }
 }
 
+@available(iOS 13.0, *)
 struct PresentationID: Hashable, Identifiable, Sendable {
   private let identifier: AnyHashableSendable?
   private let tag: UInt32?

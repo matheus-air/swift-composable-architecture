@@ -1,3 +1,4 @@
+@available(iOS 13, *)
 extension AnyReducer where Action: BindableAction, State == Action.State {
   /// This API has been soft-deprecated in favor of ``BindingReducer``. Read
   /// <doc:MigratingToTheReducerProtocol> for more information.

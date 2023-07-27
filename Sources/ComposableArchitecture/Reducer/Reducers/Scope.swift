@@ -95,6 +95,7 @@
 ///
 /// For an alternative to using ``Scope`` with state case paths that enforces the order, check out
 /// the ``ifCaseLet(_:action:then:fileID:line:)`` operator.
+@available(iOS 13, *)
 public struct Scope<ParentState, ParentAction, Child: ReducerProtocol>: ReducerProtocol {
   @usableFromInline
   enum StatePath {

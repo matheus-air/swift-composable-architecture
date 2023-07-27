@@ -6,6 +6,7 @@
 /// Alerts and confirmation dialogs are examples of this kind of state.
 public protocol _EphemeralState {}
 
+@available(iOS 13.0, *)
 extension AlertState: _EphemeralState {}
 
 @available(iOS 13, macOS 12, tvOS 13, watchOS 6, *)

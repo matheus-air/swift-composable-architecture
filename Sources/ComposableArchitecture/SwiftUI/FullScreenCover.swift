@@ -1,5 +1,6 @@
 import SwiftUI
 
+@available(iOS 13.0, *)
 extension View {
   /// Presents a modal view that covers as much of the screen as possible using the store you
   /// provide as a data source for the sheet's content.

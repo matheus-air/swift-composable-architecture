@@ -61,6 +61,7 @@ import SwiftUI
 /// > store it was derived from) must happen on the same thread. Further, for SwiftUI applications,
 /// > all interactions must happen on the _main_ thread. See the documentation of the ``Store``
 /// > class for more information as to why this decision was made.
+@available(iOS 13.0, *)
 @dynamicMemberLookup
 public final class ViewStore<ViewState, ViewAction>: ObservableObject {
   // N.B. `ViewStore` does not use a `@Published` property, so `objectWillChange`
@@ -618,8 +619,10 @@ public final class ViewStore<ViewState, ViewAction>: ObservableObject {
 /// ```swift
 /// let viewStore: ViewStoreOf<Feature>
 /// ```
+@available(iOS 13.0, *)
 public typealias ViewStoreOf<R: ReducerProtocol> = ViewStore<R.State, R.Action>
 
+@available(iOS 13.0, *)
 extension ViewStore where ViewState: Equatable {
   /// Initializes a view store from a store which observes changes to state.
   ///
@@ -725,6 +728,7 @@ extension ViewStore where ViewState: Equatable {
   }
 }
 
+@available(iOS 13.0, *)
 extension ViewStore where ViewState == Void {
   public convenience init(_ store: Store<Void, ViewAction>) {
     self.init(store, removeDuplicates: ==)
@@ -732,9 +736,11 @@ extension ViewStore where ViewState == Void {
 }
 
 @available(*, deprecated, renamed: "StoreTask")
+@available(iOS 13.0, *)
 public typealias ViewStoreTask = StoreTask
 
 /// A publisher of store state.
+@available(iOS 13.0, *)
 @dynamicMemberLookup
 public struct StorePublisher<State>: Publisher {
   public typealias Output = State
@@ -783,6 +789,7 @@ private struct HashableWrapper<Value>: Hashable {
   func hash(into hasher: inout Hasher) {}
 }
 
+@available(iOS 13.0, *)
 enum BindingLocal {
   @TaskLocal static var isActive = false
 }

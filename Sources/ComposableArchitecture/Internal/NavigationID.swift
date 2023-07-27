@@ -1,5 +1,6 @@
 @_spi(Reflection) import CasePaths
 
+@available(iOS 13.0, *)
 extension DependencyValues {
   var navigationIDPath: NavigationIDPath {
     get { self[NavigationIDPathKey.self] }
@@ -7,11 +8,13 @@ extension DependencyValues {
   }
 }
 
+@available(iOS 13.0, *)
 private enum NavigationIDPathKey: DependencyKey {
   static let liveValue = NavigationIDPath()
   static let testValue = NavigationIDPath()
 }
 
+@available(iOS 13.0, *)
 struct NavigationIDPath: Hashable, Sendable {
   fileprivate var path: [NavigationID]
 
@@ -32,6 +35,7 @@ struct NavigationIDPath: Hashable, Sendable {
   public var id: Self { self }
 }
 
+@available(iOS 13.0, *)
 struct NavigationID: Hashable, @unchecked Sendable {
   private let kind: Kind
   private let identifier: AnyHashableSendable?

@@ -27,6 +27,7 @@ import Combine
 /// > you.
 @available(
   iOS,
+  introduced: 13,
   deprecated: 9999,
   message:
     """
@@ -667,32 +668,36 @@ public struct AnyReducer<State, Action, Environment> {
       guard let childAction = toChildAction.extract(from: parentAction) else { return .none }
 
       guard var childState = toChildState.extract(from: parentState) else {
-        runtimeWarn(
-          """
-          A reducer pulled back from "\(fileID):\(line)" received an action when child state was \
-          unavailable. …
-
-            Action:
-              \(debugCaseOutput(childAction))
-
-          This is generally considered an application logic error, and can happen for a few \
-          reasons:
-
-          • The reducer for a particular case of state was combined with or run from another \
-          reducer that set "\(typeName(State.self))" to another case before the reducer ran. \
-          Combine or run case-specific reducers before reducers that may set their state to \
-          another case. This ensures that case-specific reducers can handle their actions while \
-          their state is available.
-
-          • An in-flight effect emitted this action when state was unavailable. While it may be \
-          perfectly reasonable to ignore this action, you may want to cancel the associated \
-          effect before state is set to another case, especially if it is a long-living effect.
-
-          • This action was sent to the store while state was another case. Make sure that \
-          actions for this reducer can only be sent to a view store when state is non-"nil". \
-          In SwiftUI applications, use "SwitchStore".
-          """
-        )
+          if #available(iOS 13.0, *) {
+              runtimeWarn(
+              """
+              A reducer pulled back from "\(fileID):\(line)" received an action when child state was \
+              unavailable. …
+              
+                Action:
+                  \(debugCaseOutput(childAction))
+              
+              This is generally considered an application logic error, and can happen for a few \
+              reasons:
+              
+              • The reducer for a particular case of state was combined with or run from another \
+              reducer that set "\(typeName(State.self))" to another case before the reducer ran. \
+              Combine or run case-specific reducers before reducers that may set their state to \
+              another case. This ensures that case-specific reducers can handle their actions while \
+              their state is available.
+              
+              • An in-flight effect emitted this action when state was unavailable. While it may be \
+              perfectly reasonable to ignore this action, you may want to cancel the associated \
+              effect before state is set to another case, especially if it is a long-living effect.
+              
+              • This action was sent to the store while state was another case. Make sure that \
+              actions for this reducer can only be sent to a view store when state is non-"nil". \
+              In SwiftUI applications, use "SwitchStore".
+              """
+              )
+          } else {
+              // Fallback on earlier versions
+          }
         return .none
       }
       defer { parentState = toChildState.embed(childState) }
@@ -907,30 +912,34 @@ public struct AnyReducer<State, Action, Environment> {
   > {
     .init { state, action, environment in
       guard state != nil else {
-        runtimeWarn(
-          """
-          An "optional" reducer at "\(fileID):\(line)" received an action when state was "nil". …
-
-            Action:
-              \(debugCaseOutput(action))
-
-          This is generally considered an application logic error, and can happen for a few \
-          reasons:
-
-          • The optional reducer was combined with or run from another reducer that set \
-          "\(typeName(State.self))" to "nil" before the optional reducer ran. Combine or run \
-          optional reducers before reducers that can set their state to "nil". This ensures that \
-          optional reducers can handle their actions while their state is still non-"nil".
-
-          • An in-flight effect emitted this action while state was "nil". While it may be \
-          perfectly reasonable to ignore this action, you may want to cancel the associated \
-          effect before state is set to "nil", especially if it is a long-living effect.
-
-          • This action was sent to the store while state was "nil". Make sure that actions for \
-          this reducer can only be sent to a view store when state is non-"nil". In SwiftUI \
-          applications, use "IfLetStore".
-          """
-        )
+          if #available(iOS 13.0, *) {
+              runtimeWarn(
+              """
+              An "optional" reducer at "\(fileID):\(line)" received an action when state was "nil". …
+              
+                Action:
+                  \(debugCaseOutput(action))
+              
+              This is generally considered an application logic error, and can happen for a few \
+              reasons:
+              
+              • The optional reducer was combined with or run from another reducer that set \
+              "\(typeName(State.self))" to "nil" before the optional reducer ran. Combine or run \
+              optional reducers before reducers that can set their state to "nil". This ensures that \
+              optional reducers can handle their actions while their state is still non-"nil".
+              
+              • An in-flight effect emitted this action while state was "nil". While it may be \
+              perfectly reasonable to ignore this action, you may want to cancel the associated \
+              effect before state is set to "nil", especially if it is a long-living effect.
+              
+              • This action was sent to the store while state was "nil". Make sure that actions for \
+              this reducer can only be sent to a view store when state is non-"nil". In SwiftUI \
+              applications, use "IfLetStore".
+              """
+              )
+          } else {
+              // Fallback on earlier versions
+          }
         return .none
       }
       return self.reducer(&state!, action, environment)
@@ -1020,36 +1029,40 @@ public struct AnyReducer<State, Action, Environment> {
       else { return .none }
 
       if parentState[keyPath: toElementsState][id: id] == nil {
-        runtimeWarn(
-          """
-          A "forEach" reducer at "\(fileID):\(line)" received an action when state contained no \
-          element with that id. …
-
-            Action:
-              \(debugCaseOutput(action))
-            ID:
-              \(id)
-
-          This is generally considered an application logic error, and can happen for a few \
-          reasons:
-
-          • This "forEach" reducer was combined with or run from another reducer that removed \
-          the element at this id when it handled this action. To fix this make sure that this \
-          "forEach" reducer is run before any other reducers that can move or remove elements \
-          from state. This ensures that "forEach" reducers can handle their actions for the \
-          element at the intended id.
-
-          • An in-flight effect emitted this action while state contained no element at this id. \
-          It may be perfectly reasonable to ignore this action, but you also may want to cancel \
-          the effect it originated from when removing an element from the identified array, \
-          especially if it is a long-living effect.
-
-          • This action was sent to the store while its state contained no element at this id. \
-          To fix this make sure that actions for this reducer can only be sent to a view store \
-          when its state contains an element at this id. In SwiftUI applications, use \
-          "ForEachStore".
-          """
-        )
+          if #available(iOS 13.0, *) {
+              runtimeWarn(
+              """
+              A "forEach" reducer at "\(fileID):\(line)" received an action when state contained no \
+              element with that id. …
+              
+                Action:
+                  \(debugCaseOutput(action))
+                ID:
+                  \(id)
+              
+              This is generally considered an application logic error, and can happen for a few \
+              reasons:
+              
+              • This "forEach" reducer was combined with or run from another reducer that removed \
+              the element at this id when it handled this action. To fix this make sure that this \
+              "forEach" reducer is run before any other reducers that can move or remove elements \
+              from state. This ensures that "forEach" reducers can handle their actions for the \
+              element at the intended id.
+              
+              • An in-flight effect emitted this action while state contained no element at this id. \
+              It may be perfectly reasonable to ignore this action, but you also may want to cancel \
+              the effect it originated from when removing an element from the identified array, \
+              especially if it is a long-living effect.
+              
+              • This action was sent to the store while its state contained no element at this id. \
+              To fix this make sure that actions for this reducer can only be sent to a view store \
+              when its state contains an element at this id. In SwiftUI applications, use \
+              "ForEachStore".
+              """
+              )
+          } else {
+              // Fallback on earlier versions
+          }
         return .none
       }
       return
@@ -1087,35 +1100,39 @@ public struct AnyReducer<State, Action, Environment> {
       guard let (key, action) = toKeyedAction.extract(from: parentAction) else { return .none }
 
       if parentState[keyPath: toDictionaryState][key] == nil {
-        runtimeWarn(
-          """
-          A "forEach" reducer at "\(fileID):\(line)" received an action when state contained no \
-          value at that key. …
-
-            Action:
-              \(debugCaseOutput(action))
-            Key:
-              \(key)
-
-          This is generally considered an application logic error, and can happen for a few \
-          reasons:
-
-          • This "forEach" reducer was combined with or run from another reducer that removed \
-          the element at this key when it handled this action. To fix this make sure that this \
-          "forEach" reducer is run before any other reducers that can move or remove elements \
-          from state. This ensures that "forEach" reducers can handle their actions for the \
-          element at the intended key.
-
-          • An in-flight effect emitted this action while state contained no element at this \
-          key. It may be perfectly reasonable to ignore this action, but you also may want to \
-          cancel the effect it originated from when removing a value from the dictionary, \
-          especially if it is a long-living effect.
-
-          • This action was sent to the store while its state contained no element at this \
-          key. To fix this make sure that actions for this reducer can only be sent to a view \
-          store when its state contains an element at this key.
-          """
-        )
+          if #available(iOS 13.0, *) {
+              runtimeWarn(
+              """
+              A "forEach" reducer at "\(fileID):\(line)" received an action when state contained no \
+              value at that key. …
+              
+                Action:
+                  \(debugCaseOutput(action))
+                Key:
+                  \(key)
+              
+              This is generally considered an application logic error, and can happen for a few \
+              reasons:
+              
+              • This "forEach" reducer was combined with or run from another reducer that removed \
+              the element at this key when it handled this action. To fix this make sure that this \
+              "forEach" reducer is run before any other reducers that can move or remove elements \
+              from state. This ensures that "forEach" reducers can handle their actions for the \
+              element at the intended key.
+              
+              • An in-flight effect emitted this action while state contained no element at this \
+              key. It may be perfectly reasonable to ignore this action, but you also may want to \
+              cancel the effect it originated from when removing a value from the dictionary, \
+              especially if it is a long-living effect.
+              
+              • This action was sent to the store while its state contained no element at this \
+              key. To fix this make sure that actions for this reducer can only be sent to a view \
+              store when its state contains an element at this key.
+              """
+              )
+          } else {
+              // Fallback on earlier versions
+          }
         return .none
       }
       return self.reducer(

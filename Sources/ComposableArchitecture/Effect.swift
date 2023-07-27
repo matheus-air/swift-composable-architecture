@@ -6,6 +6,7 @@ import XCTestDynamicOverlay
 /// This type is deprecated in favor of ``EffectTask``. See its documentation for more information.
 @available(
   iOS,
+  introduced: 13,
   deprecated: 9999,
   message:
     """
@@ -82,10 +83,12 @@ public struct EffectPublisher<Action, Failure: Error> {
 /// ```swift
 /// let effect: EffectOf<Feature>
 /// ```
+@available(iOS 13.0, *)
 public typealias EffectOf<R: ReducerProtocol> = EffectPublisher<R.Action, Never>
 
 // MARK: - Creating Effects
 
+@available(iOS 13, *)
 extension EffectPublisher {
   /// An effect that does nothing and completes immediately. Useful for situations where you must
   /// return an effect, but you don't need to do anything.
@@ -124,8 +127,10 @@ extension EffectPublisher {
 /// > This is only an issue if using the Combine interface of ``EffectPublisher`` as mentioned
 /// > above. If you are using Swift's concurrency tools and the `.run` function on ``EffectTask``,
 /// > then threading is automatically handled for you.
+@available(iOS 13, *)
 public typealias EffectTask<Action> = EffectPublisher<Action, Never>
 
+@available(iOS 13, *)
 extension EffectPublisher where Failure == Never {
   /// Wraps an asynchronous unit of work that can emit actions any number of times in an effect.
   ///
@@ -261,6 +266,7 @@ extension EffectPublisher where Failure == Never {
 /// context.
 ///
 /// [callAsFunction]: https://docs.swift.org/swift-book/ReferenceManual/Declarations.html#ID622
+@available(iOS 13.0, *)
 @MainActor
 public struct Send<Action>: Sendable {
   let send: @MainActor @Sendable (Action) -> Void
@@ -301,6 +307,7 @@ public struct Send<Action>: Sendable {
 
 // MARK: - Composing Effects
 
+@available(iOS 13, *)
 extension EffectPublisher {
   /// Merges a variadic list of effects together into a single effect, which runs the effects at the
   /// same time.
@@ -455,6 +462,7 @@ extension EffectPublisher {
 
 // MARK: - Testing Effects
 
+@available(iOS 13, *)
 extension EffectPublisher {
   /// An effect that causes a test to fail if it runs.
   ///
@@ -598,4 +606,5 @@ extension EffectPublisher {
     See the migration roadmap for more information: https://github.com/pointfreeco/swift-composable-architecture/discussions/1477
     """
 )
+@available(iOS 13, *)
 public typealias Effect = EffectPublisher

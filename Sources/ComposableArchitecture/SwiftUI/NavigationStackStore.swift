@@ -111,6 +111,7 @@ public struct NavigationStackStore<State, Action, Root: View, Destination: View>
   }
 }
 
+@available(iOS 13.0, *)
 public struct _NavigationLinkStoreContent<State, Label: View>: View {
   let state: State?
   @ViewBuilder let label: Label
@@ -215,6 +216,7 @@ extension NavigationLink where Destination == Never {
   }
 }
 
+@available(iOS 13.0, *)
 private struct NavigationDestinationView<State, Destination: View>: View {
   let component: Component<State>
   let destination: (Component<State>) -> Destination
@@ -238,6 +240,7 @@ private struct Component<Element>: Hashable {
   }
 }
 
+@available(iOS 13.0, *)
 extension StackState {
   fileprivate var path: PathView {
     _read { yield PathView(base: self) }
@@ -300,6 +303,7 @@ private struct NavigationDestinationTypeKey: EnvironmentKey {
   static var defaultValue: Any.Type? { nil }
 }
 
+@available(iOS 13.0, *)
 extension EnvironmentValues {
   fileprivate var navigationDestinationType: Any.Type? {
     get { self[NavigationDestinationTypeKey.self] }

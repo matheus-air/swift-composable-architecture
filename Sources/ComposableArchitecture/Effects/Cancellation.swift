@@ -1,6 +1,7 @@
 import Combine
 import Foundation
 
+@available(iOS 13.0, *)
 extension EffectPublisher {
   /// Turns an effect into one that is capable of being canceled.
   ///
@@ -149,6 +150,7 @@ extension EffectPublisher {
 ///   - operation: An async operation.
 /// - Throws: An error thrown by the operation.
 /// - Returns: A value produced by operation.
+@available(iOS 13.0, *)
 @_unsafeInheritExecutor
 public func withTaskCancellation<ID: Hashable, T: Sendable>(
   id: ID,
@@ -178,6 +180,7 @@ public func withTaskCancellation<ID: Hashable, T: Sendable>(
   }
 }
 
+@available(iOS 13.0, *)
 extension Task where Success == Never, Failure == Never {
   /// Cancel any currently in-flight operation with the given identifier.
   ///
@@ -191,6 +194,7 @@ extension Task where Success == Never, Failure == Never {
   }
 }
 
+@available(iOS 13.0, *)
 @_spi(Internals) public struct _CancelID: Hashable {
   let discriminator: ObjectIdentifier
   let id: AnyHashable
@@ -203,6 +207,7 @@ extension Task where Success == Never, Failure == Never {
   }
 }
 
+@available(iOS 13.0, *)
 @_spi(Internals) public var _cancellationCancellables = CancellablesCollection()
 private let _cancellablesLock = NSRecursiveLock()
 
@@ -225,6 +230,7 @@ extension _ErrorMechanism {
 
 extension Result: _ErrorMechanism {}
 
+@available(iOS 13.0, *)
 @_spi(Internals)
 public class CancellablesCollection {
   var storage: [_CancelID: Set<AnyCancellable>] = [:]

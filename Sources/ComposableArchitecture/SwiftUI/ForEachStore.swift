@@ -81,6 +81,7 @@ import SwiftUI
 /// }
 /// ```
 ///
+@available(iOS 13.0, *)
 public struct ForEachStore<
   EachState, EachAction, Data: Collection, ID: Hashable, Content: View
 >: DynamicViewContent {

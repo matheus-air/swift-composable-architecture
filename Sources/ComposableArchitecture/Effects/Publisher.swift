@@ -1,5 +1,6 @@
 import Combine
 
+@available(iOS 13.0, *)
 extension EffectPublisher where Failure == Never {
   /// Creates an effect from a Combine publisher.
   ///
@@ -22,7 +23,7 @@ extension EffectPublisher where Failure == Never {
   }
 }
 
-@available(iOS, deprecated: 9999.0)
+@available(iOS, introduced: 13, deprecated: 9999.0)
 @available(macOS, deprecated: 9999.0)
 @available(tvOS, deprecated: 9999.0)
 @available(watchOS, deprecated: 9999.0)
@@ -81,6 +82,7 @@ extension EffectPublisher: Publisher {
   }
 }
 
+@available(iOS 13, *)
 extension EffectPublisher {
   /// Initializes an effect that wraps a publisher.
   ///
@@ -333,6 +335,7 @@ extension EffectPublisher {
   }
 }
 
+@available(iOS 13, *)
 extension EffectPublisher where Failure == Error {
   /// Initializes an effect that lazily executes some work in the real world and synchronously sends
   /// that data back into the store.
@@ -376,6 +379,7 @@ extension EffectPublisher where Failure == Error {
   }
 }
 
+@available(iOS 13.0, *)
 extension Publisher {
   /// Turns any publisher into an ``EffectPublisher``.
   ///

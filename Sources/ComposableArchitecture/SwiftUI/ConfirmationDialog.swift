@@ -69,6 +69,7 @@ extension View {
   }
 }
 
+@available(iOS 13.0, *)
 extension View {
   /// Displays a dialog when the store's state becomes non-`nil`, and dismisses it when it becomes
   /// `nil`.

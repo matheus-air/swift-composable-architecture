@@ -1,3 +1,4 @@
+@available(iOS 13.0, *)
 extension DependencyValues {
   /// A Boolean value that indicates whether the current feature is being presented from a parent
   /// feature.

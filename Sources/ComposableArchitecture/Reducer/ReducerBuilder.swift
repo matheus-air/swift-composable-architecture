@@ -5,6 +5,7 @@
 /// ``ReducerProtocol`` and implementing its ``ReducerProtocol/body-swift.property-97ymy`` property.
 ///
 /// See ``CombineReducers`` for an entry point into a reducer builder context.
+@available(iOS 13, *)
 @resultBuilder
 public enum ReducerBuilder<State, Action> {
   @inlinable

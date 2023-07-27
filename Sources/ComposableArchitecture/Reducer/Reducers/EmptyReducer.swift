@@ -2,6 +2,7 @@
 ///
 /// While not very useful on its own, `EmptyReducer` can be used as a placeholder in APIs that hold
 /// reducers.
+@available(iOS 13, *)
 public struct EmptyReducer<State, Action>: ReducerProtocol {
   /// Initializes a reducer that does nothing.
   @inlinable

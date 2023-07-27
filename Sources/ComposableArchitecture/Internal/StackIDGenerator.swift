@@ -1,5 +1,6 @@
 import Foundation
 
+@available(iOS 13.0, *)
 extension DependencyValues {
   @_spi(Internals) public var stackElementID: StackElementIDGenerator {
     get { self[StackElementIDGenerator.self] }

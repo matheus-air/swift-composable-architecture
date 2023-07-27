@@ -1,3 +1,4 @@
+@available(iOS 13, *)
 extension Reduce {
   @available(
     iOS,
@@ -89,6 +90,7 @@ extension Reduce {
     See the migration guide for more information: https://pointfreeco.github.io/swift-composable-architecture/main/documentation/composablearchitecture/reducerprotocol
     """
 )
+@available(iOS 13, *)
 extension AnyReducer {
   public init<R: ReducerProtocol>(
     @ReducerBuilder<State, Action> _ build: @escaping (Environment) -> R
@@ -103,6 +105,7 @@ extension AnyReducer {
   }
 }
 
+@available(iOS 13, *)
 extension Store {
   /// Initializes a store from an initial state, a reducer, and an environment.
   ///

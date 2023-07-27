@@ -109,6 +109,7 @@ import SwiftUI
 ///   ViewStore(self.store).send(.buttonTapped)
 /// }
 /// ```
+@available(iOS 13.0, *)
 public struct WithViewStore<ViewState, ViewAction, Content: View>: View {
   private let content: (ViewStore<ViewState, ViewAction>) -> Content
   #if DEBUG
@@ -434,6 +435,7 @@ public struct WithViewStore<ViewState, ViewAction, Content: View>: View {
   }
 }
 
+@available(iOS 13.0, *)
 extension WithViewStore where ViewState: Equatable, Content: View {
   /// Initializes a structure that transforms a ``Store`` into an observable ``ViewStore`` in order
   /// to compute views from state.
@@ -683,6 +685,7 @@ extension WithViewStore where ViewState: Equatable, Content: View {
   }
 }
 
+@available(iOS 13.0, *)
 extension WithViewStore: DynamicViewContent
 where
   ViewState: Collection,

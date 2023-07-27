@@ -64,6 +64,7 @@ extension View {
   }
 }
 
+@available(iOS 13.0, *)
 extension View {
   /// Displays an alert when then store's state becomes non-`nil`, and dismisses it when it becomes
   /// `nil`.
@@ -120,6 +121,7 @@ private struct NewAlertModifier<Action>: ViewModifier {
   }
 }
 
+@available(iOS 13.0, *)
 private struct OldAlertModifier<Action>: ViewModifier {
   @ObservedObject var viewStore: ViewStore<AlertState<Action>?, Action>
   let dismiss: Action

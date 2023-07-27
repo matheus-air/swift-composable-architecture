@@ -5,6 +5,7 @@ import XCTestDynamicOverlay
 
 // MARK: - Deprecated after 0.54.1
 
+@available(iOS 13.0, *)
 extension WithViewStore where ViewState == Void, Content: View {
   @available(*, deprecated, message: "Use 'store.send(action)' directly on the 'Store' instead.")
   public init(
@@ -16,6 +17,7 @@ extension WithViewStore where ViewState == Void, Content: View {
     self.init(store, removeDuplicates: ==, content: content, file: file, line: line)
   }
 }
+@available(iOS 13, *)
 
 extension EffectPublisher {
   @available(*, deprecated, message: "Use 'Effect.merge([.cancel(id: …), …])' instead.")
@@ -26,6 +28,7 @@ extension EffectPublisher {
 
 // MARK: - Deprecated after 0.52.0
 
+@available(iOS 13.0, *)
 extension WithViewStore {
   @available(*, deprecated, renamed: "_printChanges(_:)")
   public func debug(_ prefix: String = "") -> Self {
@@ -33,8 +36,9 @@ extension WithViewStore {
   }
 }
 
+@available(iOS 13, *)
 extension EffectPublisher where Failure == Never {
-  @available(iOS, deprecated: 9999, message: "Use 'Effect.run' and pass the action to 'send'.")
+  @available(iOS, introduced: 13, deprecated: 9999, message: "Use 'Effect.run' and pass the action to 'send'.")
   @available(macOS, deprecated: 9999, message: "Use 'Effect.run' and pass the action to 'send'.")
   @available(tvOS, deprecated: 9999, message: "Use 'Effect.run' and pass the action to 'send'.")
   @available(watchOS, deprecated: 9999, message: "Use 'Effect.run' and pass the action to 'send'.")
@@ -80,7 +84,7 @@ extension EffectPublisher where Failure == Never {
     }
   }
 
-  @available(iOS, deprecated: 9999, message: "Use 'Effect.run' and ignore 'send' instead.")
+  @available(iOS, introduced: 13, deprecated: 9999, message: "Use 'Effect.run' and ignore 'send' instead.")
   @available(macOS, deprecated: 9999, message: "Use 'Effect.run' and ignore 'send' instead.")
   @available(tvOS, deprecated: 9999, message: "Use 'Effect.run' and ignore 'send' instead.")
   @available(watchOS, deprecated: 9999, message: "Use 'Effect.run' and ignore 'send' instead.")
@@ -92,8 +96,9 @@ extension EffectPublisher where Failure == Never {
   }
 }
 
+@available(iOS 13.0, *)
 extension Store {
-  @available(iOS, deprecated: 9999, message: "Pass a closure as the reducer.")
+  @available(iOS, introduced: 13, deprecated: 9999, message: "Pass a closure as the reducer.")
   @available(macOS, deprecated: 9999, message: "Pass a closure as the reducer.")
   @available(tvOS, deprecated: 9999, message: "Pass a closure as the reducer.")
   @available(watchOS, deprecated: 9999, message: "Pass a closure as the reducer.")
@@ -118,6 +123,7 @@ extension Store {
   }
 }
 
+@available(iOS 13.0, *)
 extension TestStore {
   @available(
     *, deprecated,
@@ -231,6 +237,7 @@ extension TestStore {
   }
 }
 
+@available(iOS 13.0, *)
 extension Store {
   @available(
     *,
@@ -249,6 +256,7 @@ extension Store {
   }
 }
 
+@available(iOS 13, *)
 extension EffectPublisher {
   @available(
     *,
@@ -288,7 +296,7 @@ extension EffectPublisher {
 }
 
 @available(
-  *,
+  iOS, introduced: 13,
   deprecated,
   message:
     """
@@ -307,6 +315,7 @@ public func withTaskCancellation<T: Sendable>(
   )
 }
 
+@available(iOS 13.0, *)
 extension Task where Success == Never, Failure == Never {
   @available(
     *,
@@ -324,7 +333,7 @@ extension Task where Success == Never, Failure == Never {
 // MARK: - Deprecated after 0.49.2
 
 @available(
-  *,
+  iOS, introduced: 13,
   deprecated,
   message: "Use 'ReducerBuilder<_, _>' with explicit 'State' and 'Action' generics, instead."
 )
@@ -338,6 +347,7 @@ public typealias BindableState = BindingState
 
 // MARK: - Deprecated after 0.47.2
 
+@available(iOS 13.0.0, *)
 extension ActorIsolated {
   @available(
     *,
@@ -356,7 +366,7 @@ extension ActorIsolated {
 // MARK: - Deprecated after 0.45.0:
 
 @available(
-  *,
+  iOS, introduced: 13,
   deprecated,
   message: "Pass 'TextState' to the 'SwiftUI.Text' initializer, instead, e.g., 'Text(textState)'."
 )
@@ -373,7 +383,7 @@ extension TextState: View {
 ///
 /// A type alias to ``AnyReducer`` for source compatibility. This alias will be removed.
 @available(
-  *,
+  iOS, introduced: 13,
   deprecated,
   renamed: "AnyReducer",
   message:
@@ -387,6 +397,7 @@ public typealias Reducer = AnyReducer
 
 // MARK: - Deprecated after 0.41.0:
 
+@available(iOS 13.0, *)
 extension ViewStore {
   @available(*, deprecated, renamed: "ViewState")
   public typealias State = ViewState
@@ -395,6 +406,7 @@ extension ViewStore {
   public typealias Action = ViewAction
 }
 
+@available(iOS 13, *)
 extension ReducerProtocol {
   @available(*, deprecated, renamed: "_printChanges")
   @warn_unqualified_access
@@ -403,6 +415,7 @@ extension ReducerProtocol {
   }
 }
 
+@available(iOS 13, *)
 extension ReducerBuilder {
   @_disfavoredOverload
   @available(
@@ -428,6 +441,7 @@ extension ReducerBuilder {
 
 // MARK: - Deprecated after 0.39.1:
 
+@available(iOS 13.0, *)
 extension WithViewStore {
   @available(*, deprecated, renamed: "ViewState")
   public typealias State = ViewState
@@ -438,6 +452,7 @@ extension WithViewStore {
 
 // MARK: - Deprecated after 0.39.0:
 
+@available(iOS 13.0, *)
 extension CaseLet {
   @available(*, deprecated, renamed: "EnumState")
   public typealias GlobalState = EnumState
@@ -452,6 +467,7 @@ extension CaseLet {
   public typealias LocalAction = CaseAction
 }
 
+@available(iOS 13.0, *)
 extension TestStore {
   @available(*, deprecated, renamed: "ScopedState")
   public typealias LocalState = ScopedState
@@ -462,6 +478,7 @@ extension TestStore {
 
 // MARK: - Deprecated after 0.38.2:
 
+@available(iOS 13, *)
 extension EffectPublisher {
   @available(*, deprecated)
   public var upstream: AnyPublisher<Action, Failure> {
@@ -469,6 +486,7 @@ extension EffectPublisher {
   }
 }
 
+@available(iOS 13, *)
 extension EffectPublisher where Failure == Error {
   @_disfavoredOverload
   @available(
@@ -509,7 +527,7 @@ extension EffectPublisher where Failure == Error {
 ///   - reducer: The reducer that powers the business logic of the application.
 ///   - environment: The environment of dependencies for the application.
 @available(
-  *, deprecated,
+  iOS, introduced: 13, deprecated,
   message:
     """
     If you use this initializer, please open a discussion on GitHub and let us know how: https://github.com/pointfreeco/swift-composable-architecture/discussions/new
@@ -531,8 +549,9 @@ extension Store {
 
 // MARK: - Deprecated after 0.38.0:
 
+@available(iOS 13, *)
 extension EffectPublisher {
-  @available(iOS, deprecated: 9999, renamed: "unimplemented")
+  @available(iOS, introduced: 13, deprecated: 9999, renamed: "unimplemented")
   @available(macOS, deprecated: 9999, renamed: "unimplemented")
   @available(tvOS, deprecated: 9999, renamed: "unimplemented")
   @available(watchOS, deprecated: 9999, renamed: "unimplemented")
@@ -543,6 +562,7 @@ extension EffectPublisher {
 
 // MARK: - Deprecated after 0.36.0:
 
+@available(iOS 13.0.0, *)
 extension ViewStore {
   @available(*, deprecated, renamed: "yield(while:)")
   @MainActor
@@ -553,6 +573,7 @@ extension ViewStore {
 
 // MARK: - Deprecated after 0.34.0:
 
+@available(iOS 13, *)
 extension EffectPublisher {
   @available(
     *,
@@ -571,6 +592,7 @@ extension EffectPublisher {
 
 // MARK: - Deprecated after 0.31.0:
 
+@available(iOS 13, *)
 extension AnyReducer {
   @available(
     *,
@@ -653,6 +675,9 @@ extension AnyReducer {
 }
 
 // MARK: - Deprecated after 0.29.0:
+@available(iOS 13.0, *)
+@available(iOS 13.0, *)
+@available(iOS 13.0, *)
 
 extension TestStore where ScopedState: Equatable, Action: Equatable {
   @available(
@@ -827,6 +852,7 @@ extension TestStore where ScopedState: Equatable, Action: Equatable {
 @available(*, deprecated, renamed: "ConfirmationDialogState")
 public typealias ActionSheetState = ConfirmationDialogState
 
+@available(iOS 13.0, *)
 extension View {
   @available(iOS 13, *)
   @available(macOS 12, *)
@@ -841,6 +867,7 @@ extension View {
   }
 }
 
+@available(iOS 13.0, *)
 extension Store {
   @available(
     *, deprecated,
@@ -944,6 +971,7 @@ extension BindingAction {
   }
 }
 
+@available(iOS 13, *)
 extension AnyReducer {
   @available(
     *, deprecated,
@@ -961,6 +989,7 @@ extension AnyReducer {
   }
 }
 
+@available(iOS 13.0, *)
 extension ViewStore {
   @available(
     *, deprecated,
@@ -986,6 +1015,7 @@ extension ViewStore {
 
 // MARK: - Deprecated after 0.20.0:
 
+@available(iOS 13, *)
 extension AnyReducer {
   @available(*, deprecated, message: "Use the 'IdentifiedArray'-based version, instead.")
   public func forEach<ParentState, ParentAction, ParentEnvironment>(
@@ -1045,6 +1075,7 @@ extension AnyReducer {
   }
 }
 
+@available(iOS 13.0, *)
 extension ForEachStore {
   @available(*, deprecated, message: "Use the 'IdentifiedArray'-based version, instead.")
   public init<EachContent>(

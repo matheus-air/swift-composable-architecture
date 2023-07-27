@@ -1,6 +1,7 @@
 import Combine
 import Foundation
 
+@available(iOS 13.0, *)
 final class CurrentValueRelay<Output>: Publisher {
   typealias Failure = Never
 
@@ -31,6 +32,7 @@ final class CurrentValueRelay<Output>: Publisher {
   }
 }
 
+@available(iOS 13.0, *)
 extension CurrentValueRelay {
   final class Subscription<Downstream: Subscriber>: Combine.Subscription
   where Downstream.Input == Output, Downstream.Failure == Failure {

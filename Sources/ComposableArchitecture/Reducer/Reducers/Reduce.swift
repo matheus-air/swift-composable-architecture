@@ -2,6 +2,7 @@
 ///
 /// ``Reduce`` is useful for injecting logic into a reducer tree without the overhead of introducing
 /// a new type that conforms to ``ReducerProtocol``.
+@available(iOS 13, *)
 public struct Reduce<State, Action>: ReducerProtocol {
   @usableFromInline
   let reduce: (inout State, Action) -> EffectTask<Action>

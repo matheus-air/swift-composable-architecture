@@ -1,5 +1,6 @@
 import SwiftUI
 
+@available(iOS 13.0, *)
 extension View {
   @_spi(Presentation)
   public func presentation<State, Action, Content: View>(
@@ -112,6 +113,7 @@ extension View {
   }
 }
 
+@available(iOS 13.0, *)
 @_spi(Presentation)
 public struct PresentationStore<
   State, Action, DestinationState, DestinationAction, Content: View
@@ -240,6 +242,7 @@ public struct PresentationStore<
   }
 }
 
+@available(iOS 13.0, *)
 @_spi(Presentation)
 public struct AnyIdentifiable: Identifiable {
   public let id: AnyHashable
@@ -249,6 +252,7 @@ public struct AnyIdentifiable: Identifiable {
   }
 }
 
+@available(iOS 13.0, *)
 @_spi(Presentation)
 public struct DestinationContent<State, Action> {
   let store: Store<State?, Action>

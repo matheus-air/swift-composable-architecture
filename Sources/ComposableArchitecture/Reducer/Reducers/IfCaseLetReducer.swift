@@ -1,3 +1,4 @@
+@available(iOS 13.0, *)
 extension ReducerProtocol {
   /// Embeds a child reducer in a parent domain that works on a case of parent enum state.
   ///
@@ -70,6 +71,7 @@ extension ReducerProtocol {
   }
 }
 
+@available(iOS 13.0, *)
 public struct _IfCaseLetReducer<Parent: ReducerProtocol, Child: ReducerProtocol>: ReducerProtocol {
   @usableFromInline
   let parent: Parent

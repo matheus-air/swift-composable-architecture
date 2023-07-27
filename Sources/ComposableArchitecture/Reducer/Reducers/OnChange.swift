@@ -1,3 +1,4 @@
+@available(iOS 13, *)
 extension ReducerProtocol {
   /// Adds a reducer to run when this reducer changes the given value in state.
   ///
@@ -52,6 +53,7 @@ extension ReducerProtocol {
   }
 }
 
+@available(iOS 13, *)
 public struct _OnChangeReducer<Base: ReducerProtocol, Value: Equatable, Body: ReducerProtocol>:
   ReducerProtocol
 where Base.State == Body.State, Base.Action == Body.Action {

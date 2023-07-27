@@ -1,5 +1,6 @@
 import Combine
 
+@available(iOS 13.0, *)
 extension Store {
   /// Calls one of two closures depending on whether a store's optional state is `nil` or not, and
   /// whenever this condition changes for as long as the cancellable lives.

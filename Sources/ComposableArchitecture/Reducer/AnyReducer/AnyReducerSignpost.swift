@@ -1,6 +1,7 @@
 import Combine
 import os.signpost
 
+@available(iOS 13.0, *)
 extension AnyReducer {
   /// Instruments the reducer with
   /// [signposts](https://developer.apple.com/documentation/os/logging/recording_performance_data).
@@ -85,8 +86,10 @@ extension AnyReducer {
   }
 }
 
+@available(iOS 13.0, *)
 extension EffectPublisher where Failure == Never {
-  @usableFromInline
+    @available(iOS 13.0, *)
+    @usableFromInline
   func effectSignpost(
     _ prefix: String,
     log: OSLog,

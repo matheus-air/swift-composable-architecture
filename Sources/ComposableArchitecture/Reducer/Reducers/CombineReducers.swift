@@ -15,6 +15,7 @@
 ///   .ifLet(\.child, action: /Action.child)
 /// }
 /// ```
+@available(iOS 13, *)
 public struct CombineReducers<State, Action, Reducers: ReducerProtocol>: ReducerProtocol
 where State == Reducers.State, Action == Reducers.Action {
   @usableFromInline

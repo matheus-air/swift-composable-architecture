@@ -52,6 +52,7 @@ import SwiftUI
 /// See ``ReducerProtocol/ifCaseLet(_:action:then:fileID:line:)`` and
 /// ``Scope/init(state:action:child:fileID:line:)`` for embedding reducers that operate on each
 /// case of an enum in reducers that operate on the entire enum.
+@available(iOS 13.0, *)
 public struct SwitchStore<State, Action, Content: View>: View {
   public let store: Store<State, Action>
   public let content: (State) -> Content
@@ -75,6 +76,7 @@ public struct SwitchStore<State, Action, Content: View>: View {
 }
 
 /// A view that handles a specific case of enum state in a ``SwitchStore``.
+@available(iOS 13.0, *)
 public struct CaseLet<EnumState, EnumAction, CaseState, CaseAction, Content: View>: View {
   public let toCaseState: (EnumState) -> CaseState?
   public let fromCaseAction: (CaseAction) -> EnumAction
@@ -143,6 +145,7 @@ public struct CaseLet<EnumState, EnumAction, CaseState, CaseAction, Content: Vie
   }
 }
 
+@available(iOS 13.0, *)
 extension CaseLet where EnumAction == CaseAction {
   /// Initializes a ``CaseLet`` view that computes content depending on if a store of enum state
   /// matches a particular case.
@@ -171,6 +174,7 @@ extension CaseLet where EnumAction == CaseAction {
 /// the ``SwitchStore``'s body.
 @available(
   iOS,
+  introduced: 13.0,
   deprecated: 9999,
   message:
     "Use the 'SwitchStore.init' that can 'switch' over a given 'state' and use 'default' instead."
@@ -210,6 +214,7 @@ public struct Default<Content: View>: View {
   }
 }
 
+@available(iOS 13.0, *)
 extension SwitchStore {
   @available(
     iOS,
@@ -1498,6 +1503,7 @@ extension SwitchStore {
 
 @available(
   iOS,
+  introduced: 13,
   deprecated: 9999,
   message: "Use the 'SwitchStore.init' that can 'switch' over a given 'state' instead."
 )
@@ -1565,6 +1571,7 @@ public struct _ExhaustivityCheckView<State, Action>: View {
   }
 }
 
+@available(iOS 13.0, *)
 public struct _CaseLetMismatchView<State, Action>: View {
   @EnvironmentObject private var store: StoreObservableObject<State, Action>
   let fileID: StaticString
@@ -1612,6 +1619,7 @@ public struct _CaseLetMismatchView<State, Action>: View {
   }
 }
 
+@available(iOS 13.0, *)
 private final class StoreObservableObject<State, Action>: ObservableObject {
   let wrappedValue: Store<State, Action>
 

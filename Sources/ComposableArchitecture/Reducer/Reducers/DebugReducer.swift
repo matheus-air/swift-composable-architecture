@@ -1,3 +1,4 @@
+@available(iOS 13.0, *)
 extension ReducerProtocol {
   #if swift(>=5.8)
     /// Enhances a reducer with debug logging of received actions and state mutations for the given
@@ -40,6 +41,7 @@ public struct _ReducerPrinter<State, Action> {
   }
 }
 
+@available(iOS 13.0, *)
 extension _ReducerPrinter {
   public static var customDump: Self {
     Self { receivedAction, oldState, newState in
@@ -59,6 +61,7 @@ extension _ReducerPrinter {
   }
 }
 
+@available(iOS 13, *)
 public struct _PrintChangesReducer<Base: ReducerProtocol>: ReducerProtocol {
   @usableFromInline
   let base: Base

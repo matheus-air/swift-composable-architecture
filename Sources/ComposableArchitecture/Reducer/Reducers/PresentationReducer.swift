@@ -43,6 +43,7 @@ import Combine
 /// See the dedicated article on <doc:Navigation> for more information on the library's navigation
 /// tools, and in particular see <doc:TreeBasedNavigation> for information on modeling navigation
 /// using optionals and enums.
+@available(iOS 13.0, *)
 @propertyWrapper
 public struct PresentationState<State> {
   private class Storage: @unchecked Sendable {
@@ -109,20 +110,24 @@ public struct PresentationState<State> {
   }
 }
 
+@available(iOS 13.0, *)
 extension PresentationState: Equatable where State: Equatable {
   public static func == (lhs: Self, rhs: Self) -> Bool {
     lhs.wrappedValue == rhs.wrappedValue
   }
 }
 
+@available(iOS 13.0, *)
 extension PresentationState: Hashable where State: Hashable {
   public func hash(into hasher: inout Hasher) {
     self.wrappedValue.hash(into: &hasher)
   }
 }
 
+@available(iOS 13.0, *)
 extension PresentationState: Sendable where State: Sendable {}
 
+@available(iOS 13.0, *)
 extension PresentationState: Decodable where State: Decodable {
   public init(from decoder: Decoder) throws {
     do {
@@ -133,6 +138,7 @@ extension PresentationState: Decodable where State: Decodable {
   }
 }
 
+@available(iOS 13.0, *)
 extension PresentationState: Encodable where State: Encodable {
   public func encode(to encoder: Encoder) throws {
     do {
@@ -144,6 +150,7 @@ extension PresentationState: Encodable where State: Encodable {
   }
 }
 
+@available(iOS 13.0, *)
 extension PresentationState: CustomReflectable {
   public var customMirror: Mirror {
     Mirror(reflecting: self.wrappedValue as Any)
@@ -192,6 +199,7 @@ extension PresentationAction: Sendable where Action: Sendable {}
 extension PresentationAction: Decodable where Action: Decodable {}
 extension PresentationAction: Encodable where Action: Encodable {}
 
+@available(iOS 13.0, *)
 extension ReducerProtocol {
   /// Embeds a child reducer in a parent domain that works on an optional property of parent state.
   ///
@@ -291,6 +299,7 @@ extension ReducerProtocol {
   }
 }
 
+@available(iOS 13.0, *)
 public struct _PresentationReducer<
   Base: ReducerProtocol, Destination: ReducerProtocol
 >: ReducerProtocol {
@@ -464,6 +473,7 @@ public struct _PresentedID: Hashable {
   init(internal: Void) {}
 }
 
+@available(iOS 13.0, *)
 extension Task where Success == Never, Failure == Never {
   internal static func _cancel<ID: Hashable>(
     id: ID,
@@ -476,6 +486,7 @@ extension Task where Success == Never, Failure == Never {
     }
   }
 }
+@available(iOS 13.0, *)
 extension EffectPublisher {
   internal func _cancellable<ID: Hashable>(
     id: ID = _PresentedID(),

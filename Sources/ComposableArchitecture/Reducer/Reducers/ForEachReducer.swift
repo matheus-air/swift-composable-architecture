@@ -1,5 +1,6 @@
 import OrderedCollections
 
+@available(iOS 13.0, *)
 extension ReducerProtocol {
   /// Embeds a child reducer in a parent domain that works on elements of a collection in parent
   /// state.
@@ -72,6 +73,7 @@ extension ReducerProtocol {
   }
 }
 
+@available(iOS 13.0, *)
 public struct _ForEachReducer<
   Parent: ReducerProtocol, ID: Hashable, Element: ReducerProtocol
 >: ReducerProtocol {

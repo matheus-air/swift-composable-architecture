@@ -1,6 +1,7 @@
 import SwiftUI
 
 /// A reducer that updates bindable state when it receives binding actions.
+@available(iOS 13, *)
 public struct BindingReducer<State, Action, ViewAction: BindableAction>: ReducerProtocol
 where State == ViewAction.State {
   @usableFromInline

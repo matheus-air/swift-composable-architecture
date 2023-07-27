@@ -1,5 +1,6 @@
 import SwiftUI
 
+@available(iOS 13.0, *)
 extension DependencyValues {
   /// An effect that dismisses the current presentation.
   ///
@@ -73,6 +74,7 @@ extension DependencyValues {
 /// > }
 /// > XCTAssertEqual(isDismissInvoked.value, true)
 /// > ```
+@available(iOS 13.0, *)
 public struct DismissEffect: Sendable {
   var dismiss: (@MainActor @Sendable () -> Void)?
 
@@ -111,12 +113,14 @@ public struct DismissEffect: Sendable {
   }
 }
 
+@available(iOS 13.0, *)
 extension DismissEffect {
   public init(_ dismiss: @escaping @MainActor @Sendable () -> Void) {
     self.dismiss = dismiss
   }
 }
 
+@available(iOS 13.0, *)
 private enum DismissKey: DependencyKey {
   static let liveValue = DismissEffect()
   static var testValue = DismissEffect()

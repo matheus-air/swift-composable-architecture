@@ -1,3 +1,4 @@
+@available(iOS 13, *)
 extension Optional: ReducerProtocol where Wrapped: ReducerProtocol {
   @inlinable
   public func reduce(

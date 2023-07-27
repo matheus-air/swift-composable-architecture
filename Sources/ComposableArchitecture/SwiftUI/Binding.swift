@@ -283,6 +283,7 @@ extension BindableAction {
   }
 }
 
+@available(iOS 13.0, *)
 extension ViewStore where ViewAction: BindableAction, ViewAction.State == ViewState {
   @MainActor
   public subscript<Value: Equatable>(
@@ -355,6 +356,7 @@ extension ViewStore where ViewAction: BindableAction, ViewAction.State == ViewSt
 /// bindable in SwiftUI views.
 ///
 /// Read <doc:Bindings> for more information.
+@available(iOS 13.0, *)
 @propertyWrapper
 public struct BindingViewState<Value> {
   let binding: Binding<Value>
@@ -375,12 +377,14 @@ public struct BindingViewState<Value> {
   }
 }
 
+@available(iOS 13.0, *)
 extension BindingViewState: Equatable where Value: Equatable {
   public static func == (lhs: Self, rhs: Self) -> Bool {
     lhs.initialValue == rhs.initialValue && lhs.wrappedValue == rhs.wrappedValue
   }
 }
 
+@available(iOS 13.0, *)
 extension BindingViewState: Hashable where Value: Hashable {
   public func hash(into hasher: inout Hasher) {
     hasher.combine(self.initialValue)
@@ -388,18 +392,21 @@ extension BindingViewState: Hashable where Value: Hashable {
   }
 }
 
+@available(iOS 13.0, *)
 extension BindingViewState: CustomReflectable {
   public var customMirror: Mirror {
     Mirror(reflecting: self.wrappedValue)
   }
 }
 
+@available(iOS 13.0, *)
 extension BindingViewState: CustomDumpRepresentable {
   public var customDumpValue: Any {
     self.wrappedValue
   }
 }
 
+@available(iOS 13.0, *)
 extension BindingViewState: CustomDebugStringConvertible
 where Value: CustomDebugStringConvertible {
   public var debugDescription: String {
@@ -410,6 +417,7 @@ where Value: CustomDebugStringConvertible {
 /// A property wrapper type that can derive ``BindingViewState`` values for a ``ViewStore``.
 ///
 /// Read <doc:Bindings> for more information.
+@available(iOS 13.0, *)
 @dynamicMemberLookup
 @propertyWrapper
 public struct BindingViewStore<State> {
@@ -482,6 +490,7 @@ public struct BindingViewStore<State> {
   }
 }
 
+@available(iOS 13.0, *)
 extension ViewStore {
   /// Initializes a structure that transforms a ``Store`` into an observable ``ViewStore`` in order
   /// to compute bindings from state.
@@ -539,6 +548,7 @@ extension ViewStore {
   }
 }
 
+@available(iOS 13.0, *)
 extension ViewStore where ViewState: Equatable {
   /// Initializes a structure that transforms a ``Store`` into an observable ``ViewStore`` in order
   /// to compute bindings from state.
@@ -587,6 +597,7 @@ extension ViewStore where ViewState: Equatable {
   }
 }
 
+@available(iOS 13.0, *)
 extension WithViewStore where Content: View {
   /// Initializes a structure that transforms a ``Store`` into an observable ``ViewStore`` in order
   /// to compute bindings and views from state.
@@ -657,6 +668,7 @@ extension WithViewStore where Content: View {
   }
 }
 
+@available(iOS 13.0, *)
 extension WithViewStore where ViewState: Equatable, Content: View {
   /// Initializes a structure that transforms a ``Store`` into an observable ``ViewStore`` in order
   /// to compute bindings and views from state.
@@ -753,18 +765,22 @@ extension WithViewStore where ViewState: Equatable, Content: View {
     deinit {
       guard !self.isInvalidated() else { return }
       guard self.wasCalled else {
-        runtimeWarn(
-          """
-          A binding action sent from a view store \
-          \(self.context == .bindingState ? "for binding state defined " : "")at \
-          "\(self.fileID):\(self.line)" was not handled. …
-
-            Action:
-              \(typeName(self.bindableActionType)).binding(.set(_, \(self.value)))
-
-          To fix this, invoke "BindingReducer()" from your feature reducer's "body".
-          """
-        )
+          if #available(iOS 13.0, *) {
+              runtimeWarn(
+              """
+              A binding action sent from a view store \
+              \(self.context == .bindingState ? "for binding state defined " : "")at \
+              "\(self.fileID):\(self.line)" was not handled. …
+              
+                Action:
+                  \(typeName(self.bindableActionType)).binding(.set(_, \(self.value)))
+              
+              To fix this, invoke "BindingReducer()" from your feature reducer's "body".
+              """
+              )
+          } else {
+              // Fallback on earlier versions
+          }
         return
       }
     }

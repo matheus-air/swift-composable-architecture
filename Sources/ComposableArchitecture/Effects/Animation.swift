@@ -1,6 +1,7 @@
 import Combine
 import SwiftUI
 
+@available(iOS 13.0, *)
 extension EffectPublisher {
   /// Wraps the emission of each element with SwiftUI's `withAnimation`.
   ///
@@ -58,6 +59,7 @@ extension EffectPublisher {
   }
 }
 
+@available(iOS 13.0, *)
 private struct TransactionPublisher<Upstream: Publisher>: Publisher {
   typealias Output = Upstream.Output
   typealias Failure = Upstream.Failure

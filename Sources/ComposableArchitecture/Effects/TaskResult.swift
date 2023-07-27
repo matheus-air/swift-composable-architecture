@@ -102,6 +102,7 @@ import XCTestDynamicOverlay
 ///   $0.isLoading = false
 /// }
 /// ```
+@available(iOS 13.0.0, *)
 public enum TaskResult<Success: Sendable>: Sendable {
   /// A success, storing a `Success` value.
   case success(Success)
@@ -188,6 +189,7 @@ public enum TaskResult<Success: Sendable>: Sendable {
   }
 }
 
+@available(iOS 13.0.0, *)
 extension Result where Success: Sendable, Failure == Error {
   /// Transforms a `TaskResult` into a `Result`.
   ///
@@ -203,10 +205,12 @@ extension Result where Success: Sendable, Failure == Error {
   }
 }
 
+@available(iOS 13.0, *)
 enum TaskResultDebugging {
   @TaskLocal static var emitRuntimeWarnings = true
 }
 
+@available(iOS 13.0.0, *)
 extension TaskResult: Equatable where Success: Equatable {
   public static func == (lhs: Self, rhs: Self) -> Bool {
     switch (lhs, rhs) {
@@ -241,6 +245,7 @@ extension TaskResult: Equatable where Success: Equatable {
   }
 }
 
+@available(iOS 13.0.0, *)
 extension TaskResult: Hashable where Success: Hashable {
   public func hash(into hasher: inout Hasher) {
     switch self {
@@ -273,6 +278,7 @@ extension TaskResult: Hashable where Success: Hashable {
   }
 }
 
+@available(iOS 13.0.0, *)
 extension TaskResult {
   // NB: For those that try to interface with `TaskResult` using `Result`'s old API.
   @available(*, unavailable, renamed: "value")

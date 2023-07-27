@@ -1,5 +1,6 @@
 import SwiftUI
 
+@available(iOS 13.0, *)
 extension Binding {
   func isPresent<Wrapped>() -> Binding<Bool> where Value == Wrapped? {
     .init(

@@ -1,3 +1,4 @@
+@available(iOS 13.0, *)
 extension ReducerProtocol {
   /// Embeds a child reducer in a parent domain that works on an optional property of parent state.
   ///
@@ -88,6 +89,7 @@ extension ReducerProtocol {
   }
 }
 
+@available(iOS 13.0, *)
 public struct _IfLetReducer<Parent: ReducerProtocol, Child: ReducerProtocol>: ReducerProtocol {
   @usableFromInline
   let parent: Parent
