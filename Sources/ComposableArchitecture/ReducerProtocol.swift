@@ -223,6 +223,7 @@ public protocol ReducerProtocol<State, Action> {
   var body: Body { get }
 }
 
+@available(iOS 13, *)
 extension ReducerProtocol where Body == Never {
   /// A non-existent body.
   ///
@@ -240,6 +241,7 @@ extension ReducerProtocol where Body == Never {
   }
 }
 
+@available(iOS 13, *)
 extension ReducerProtocol where Body: ReducerProtocol, Body.State == State, Body.Action == Action {
   /// Invokes the ``Body-40qdd``'s implementation of ``reduce(into:action:)-8yinq``.
   @inlinable
@@ -271,5 +273,6 @@ extension ReducerProtocol where Body: ReducerProtocol, Body.State == State, Body
   ///   // ...
   /// }
   /// ```
+  @available(iOS 13, *)
   public typealias ReducerProtocolOf<R: ReducerProtocol> = ReducerProtocol<R.State, R.Action>
 #endif
